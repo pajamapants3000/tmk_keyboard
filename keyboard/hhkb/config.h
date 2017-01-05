@@ -28,11 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* matrix size */
-#ifdef HHKB_JP
-#   define MATRIX_ROWS 16
-#else
-#   define MATRIX_ROWS 8
-#endif
+#define MATRIX_ROWS 8
 #define MATRIX_COLS 8
 
 
@@ -48,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ONESHOT_TIMEOUT 300
 
 /* Boot Magic salt key: Space */
-#define BOOTMAGIC_KEY_SALT      KC_SPACE
+#define BOOTMAGIC_KEY_SALT      KC_FN6
 
 
 /*

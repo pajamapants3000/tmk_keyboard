@@ -42,13 +42,14 @@
 TARGET = gh60_lufa
 
 # Directory common source filess exist
-TMK_DIR = ../../tmk_core
+TOP_DIR = ../..
 
 # Directory keyboard dependent files exist
 TARGET_DIR = .
 
 # project specific files
-SRC =	matrix.c \
+SRC =	keymap_common.c \
+	matrix.c \
 	led.c
 
 ifdef KEYMAP
@@ -119,7 +120,7 @@ EXTRAKEY_ENABLE = yes	# Audio control and System control(+450)
 CONSOLE_ENABLE = yes	# Console for debug(+400)
 COMMAND_ENABLE = yes    # Commands for debug and configuration
 #SLEEP_LED_ENABLE = yes  # Breathing sleep LED during USB suspend
-NKRO_ENABLE = yes	# USB Nkey Rollover
+NKRO_ENABLE = yes	# USB Nkey Rollover - not yet supported in LUFA
 
 
 # Optimize size but this may cause error "relocation truncated to fit"
@@ -127,8 +128,8 @@ NKRO_ENABLE = yes	# USB Nkey Rollover
 
 # Search Path
 VPATH += $(TARGET_DIR)
-VPATH += $(TMK_DIR)
+VPATH += $(TOP_DIR)
 
-include $(TMK_DIR)/protocol/lufa.mk
-include $(TMK_DIR)/common.mk
-include $(TMK_DIR)/rules.mk
+include $(TOP_DIR)/protocol/lufa.mk
+include $(TOP_DIR)/common.mk
+include $(TOP_DIR)/rules.mk

@@ -41,7 +41,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 
-/* Pin configuration */
+/*
+ * Busywait
+ */
 #define IBM4704_CLOCK_PORT  PORTD
 #define IBM4704_CLOCK_PIN   PIND
 #define IBM4704_CLOCK_DDR   DDRD
@@ -51,11 +53,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define IBM4704_DATA_DDR    DDRD
 #define IBM4704_DATA_BIT    0
 
-/* Pin interrupt on rising edge of clock */
-#define IBM4704_INT_INIT()  do { EICRA |= ((1<<ISC11)|(1<<ISC10)); } while (0)
-#define IBM4704_INT_ON()    do { EIFR |= (1<<INTF1); EIMSK |= (1<<INT1); } while (0)
-#define IBM4704_INT_OFF()   do { EIMSK &= ~(1<<INT1); } while (0)
+/*
+ * Pin interrupt
+ */
+#ifdef IBM4704_USE_INT
+#define IBM4704_INT_INIT()  do {    \
+    EICRA |= ((1<<ISC11) |      \
+              (0<<ISC10));      \
+} while (0)
+#define IBM4704_INT_ON()  do {      \
+    EIMSK |= (1<<INT1);         \
+} while (0)
+#define IBM4704_INT_OFF() do {      \
+    EIMSK &= ~(1<<INT1);        \
+} while (0)
 #define IBM4704_INT_VECT    INT1_vect
+#endif
 
 
 #endif

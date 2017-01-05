@@ -1,41 +1,30 @@
 # Target file name (without extension).
-TARGET ?= ibm4704_usb
+TARGET = ibm4704_usb
 
 # Directory common source filess exist
-TMK_DIR ?= ../../tmk_core
+TOP_DIR = ../..
 
 # Directory keyboard dependent files exist
-TARGET_DIR ?= .
+TARGET_DIR = .
 
 # project specific files
-SRC ?=	matrix.c \
+SRC =	keymap_common.c \
+	matrix.c \
 	led.c \
 	protocol/ibm4704.c
 
-#
-# Keymap file
-#
-ifdef UNIMAP_ENABLE
-    KEYMAP_FILE = unimap
-else
-    ifdef ACTIONMAP_ENABLE
-	KEYMAP_FILE = actionmap
-    else
-	KEYMAP_FILE = keymap
-    endif
-endif
 ifdef KEYMAP
-    SRC := $(KEYMAP_FILE)_$(KEYMAP).c $(SRC)
+    SRC := keymap_$(KEYMAP).c $(SRC)
 else
-    SRC := $(KEYMAP_FILE)_plain.c $(SRC)
+    SRC := keymap_plain.c $(SRC)
 endif
 
-CONFIG_H ?= config.h
+CONFIG_H = config.h
 
 
 # MCU name
-# TMK Converter rev.2
-MCU ?= atmega32u2
+#MCU = at90usb1287
+MCU = atmega32u4
 
 # Processor frequency.
 #     This will define a symbol, F_CPU, in all source code files equal to the
@@ -48,14 +37,14 @@ MCU ?= atmega32u2
 #     does not *change* the processor frequency - it should merely be updated to
 #     reflect the processor speed set externally so that the code can use accurate
 #     software delays.
-F_CPU ?= 16000000
+F_CPU = 16000000
 
 
 #
 # LUFA specific
 #
 # Target architecture (see library "Board Types" documentation).
-ARCH ?= AVR8
+ARCH = AVR8
 
 # Input clock frequency.
 #     This will define a symbol, F_USB, in all source code files equal to the
@@ -68,7 +57,7 @@ ARCH ?= AVR8
 #
 #     If no clock division is performed on the input clock inside the AVR (via the
 #     CPU clock adjust registers or the clock division fuses), this will be equal to F_CPU.
-F_USB ?= $(F_CPU)
+F_USB = $(F_CPU)
 
 # Interrupt driven control endpoint task(+60)
 OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
@@ -80,26 +69,25 @@ OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
 #   Atmel DFU loader 4096
 #   LUFA bootloader  4096
 #   USBaspLoader     2048
-BOOTLOADER_SIZE ?= 4096
-OPT_DEFS += -DBOOTLOADER_SIZE=$(BOOTLOADER_SIZE)
+OPT_DEFS += -DBOOTLOADER_SIZE=4096
 
 
 # Build Options
 #   comment out to disable the options.
 #
-BOOTMAGIC_ENABLE ?= no	# Virtual DIP switch configuration(+1000)
-MOUSEKEY_ENABLE ?= yes	# Mouse keys(+4700)
-EXTRAKEY_ENABLE ?= yes	# Audio control and System control(+450)
-CONSOLE_ENABLE ?= yes	# Console for debug(+400)
-COMMAND_ENABLE ?= yes	# Commands for debug and configuration
-NKRO_ENABLE ?= no	# USB Nkey Rollover
+#BOOTMAGIC_ENABLE = yes	# Virtual DIP switch configuration(+1000)
+MOUSEKEY_ENABLE = yes	# Mouse keys(+4700)
+EXTRAKEY_ENABLE = yes	# Audio control and System control(+450)
+CONSOLE_ENABLE = yes	# Console for debug(+400)
+COMMAND_ENABLE = yes    # Commands for debug and configuration
+#NKRO_ENABLE = yes	# USB Nkey Rollover - not yet supported in LUFA
 
 
 # Search Path
 VPATH += $(TARGET_DIR)
-VPATH += $(TMK_DIR)
+VPATH += $(TOP_DIR)
 
-include $(TMK_DIR)/protocol.mk
-include $(TMK_DIR)/protocol/lufa.mk
-include $(TMK_DIR)/common.mk
-include $(TMK_DIR)/rules.mk
+include $(TOP_DIR)/protocol.mk
+include $(TOP_DIR)/protocol/lufa.mk
+include $(TOP_DIR)/common.mk
+include $(TOP_DIR)/rules.mk

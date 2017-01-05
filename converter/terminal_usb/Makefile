@@ -2,7 +2,7 @@
 TARGET = terminal_lufa
 
 # Directory common source filess exist
-TMK_DIR = ../../tmk_core
+TOP_DIR = ../..
 
 # Directory keyboard dependent files exist
 TARGET_DIR = .
@@ -70,7 +70,7 @@ OPT_DEFS += -DBOOTLOADER_SIZE=4096
 CONSOLE_ENABLE = yes	# Console for debug(+400)
 COMMAND_ENABLE = yes    # Commands for debug and configuration
 #SLEEP_LED_ENABLE = yes  # Breathing sleep LED during USB suspend
-#NKRO_ENABLE = yes	# USB Nkey Rollover
+#NKRO_ENABLE = yes	# USB Nkey Rollover - not yet supported in LUFA
 
 
 #
@@ -82,6 +82,21 @@ PS2_USE_USART = yes	# uses hardware USART engine for PS/2 signal receive(recomen
 #PS2_USE_INT = yes	# uses external interrupt for falling edge of PS/2 clock pin
 #PS2_USE_BUSYWAIT = yes	# uses primitive reference code
 
+ifdef PS2_USE_USART
+    SRC += protocol/ps2_usart.c
+    OPT_DEFS += -DPS2_USE_USART
+endif
+
+ifdef PS2_USE_INT
+    SRC += protocol/ps2.c
+    OPT_DEFS += -DPS2_USE_INT
+endif
+
+ifdef PS2_USE_BUSYWAIT
+    SRC += protocol/ps2.c
+    OPT_DEFS += -DPS2_USE_BUSYWAIT
+endif
+
 
 #---------------- Programming Options --------------------------
 PROGRAM_CMD = teensy_loader_cli -mmcu=$(MCU) -w -v $(TARGET).hex
@@ -89,10 +104,10 @@ PROGRAM_CMD = teensy_loader_cli -mmcu=$(MCU) -w -v $(TARGET).hex
 
 # Search Path
 VPATH += $(TARGET_DIR)
-VPATH += $(TMK_DIR)
+VPATH += $(TOP_DIR)
 
 
-include $(TMK_DIR)/protocol/lufa.mk
-include $(TMK_DIR)/protocol.mk
-include $(TMK_DIR)/common.mk
-include $(TMK_DIR)/rules.mk
+include $(TOP_DIR)/protocol/lufa.mk
+include $(TOP_DIR)/protocol.mk
+include $(TOP_DIR)/common.mk
+include $(TOP_DIR)/rules.mk

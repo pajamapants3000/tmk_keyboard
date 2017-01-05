@@ -28,5 +28,5 @@ const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
-const action_t PROGMEM fn_actions[] = {
+const uint16_t PROGMEM fn_actions[] = {
 };
