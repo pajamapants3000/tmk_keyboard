@@ -225,7 +225,7 @@ enum usage_pages {
 };
 #define ACTION_USAGE_SYSTEM(id)         ACTION(ACT_USAGE, PAGE_SYSTEM<<10 | (id))
 #define ACTION_USAGE_CONSUMER(id)       ACTION(ACT_USAGE, PAGE_CONSUMER<<10 | (id))
-#define ACTION_MOUSEKEY(key)            ACTION(ACT_MOUSEKEY, key)
+#define ACTION_MOUSEKEY(key)            ACTION(ACT_MOUSEKEY, (key))
 
 
 
@@ -298,7 +298,7 @@ enum backlight_id {
 #define ACTION_BACKLIGHT_TOGGLE()       ACTION(ACT_BACKLIGHT, BACKLIGHT_TOGGLE)
 #define ACTION_BACKLIGHT_STEP()         ACTION(ACT_BACKLIGHT, BACKLIGHT_STEP)
 /* Command */
-#define ACTION_COMMAND(id, opt)         ACTION(ACT_COMMAND,  (opt)<<8 | (addr))
+#define ACTION_COMMAND(id, opt)         ACTION(ACT_COMMAND,  (opt)<<8 | (id))
 /* Function */
 enum function_opts {
     FUNC_TAP = 0x8,     /* indciates function is tappable */

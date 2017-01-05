@@ -22,7 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <avr/pgmspace.h>
 #include "keycode.h"
 #include "action.h"
+#include "action_code.h"
+#include "action_layer.h"
 #include "action_macro.h"
+#include "action_util.h"
 #include "report.h"
 #include "host.h"
 #include "print.h"
@@ -36,7 +39,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RALT(key) ACTION(ACT_MODS, (MOD_RALT << 8) | (key))
 
 extern const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS];
-extern const uint16_t fn_actions[];
+extern const action_t fn_actions[];
 
 #define KEYMAP_PCBDOWN( \
   K00, K01, K02, K03, K04, K05, K06, K07, K08, K09, \
