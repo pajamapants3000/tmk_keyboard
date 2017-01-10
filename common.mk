@@ -35,8 +35,12 @@ endif
 ifdef CONSOLE_ENABLE
     OPT_DEFS += -DCONSOLE_ENABLE
 else
-    OPT_DEFS += -DNO_PRINT
-    OPT_DEFS += -DNO_DEBUG
+ifndef NO_PRINT
+	OPT_DEFS += -DNO_PRINT
+endif
+ifndef NO_DEBUG
+	OPT_DEFS += -DNO_DEBUG
+endif
 endif
 
 ifdef COMMAND_ENABLE
