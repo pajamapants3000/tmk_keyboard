@@ -52,7 +52,6 @@ KeyRelease event, serial 41, synthetic NO, window 0x7200001,
 /*              Define layouts              */
 
 // Main/Alpahet Layout - Same as default but with super <-> alt
-// K*L0
 // http://www.keyboard-layout-editor.com/#/gists/8ef00a0e901ad4ade2606f169a1c20de
 #define LAYER_ALPHA KEYMAP(                                                 \
 /* R1 */KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P,         \
@@ -61,22 +60,7 @@ KeyRelease event, serial 41, synthetic NO, window 0x7200001,
 /* R4 */KC_ESC, KC_TAB, KC_LALT, KC_LSFT, KC_BSPC, KC_LGUI, KC_RCTL,        \
                 KC_SPC, KC_FN1, KC_MINS, KC_QUOT, KC_ENT                    )
 
-// Function-Layer Layout (Punctuation, numbers, arrows)
-// K1L1
-// http://www.keyboard-layout-editor.com/#/gists/aa83cdcb86b63a1f9f24780b04031ce8
-#define LAYER_PUCT_NUM KEYMAP(                                              \
-/* LH */SHIFT(KC_1), SHIFT(KC_2), SHIFT(KC_9), SHIFT(KC_0), SHIFT(KC_3),    \
-/* RH */SHIFT(KC_4), KC_7, KC_8, KC_9, SHIFT(KC_8),                         \
-/* LH */SHIFT(KC_BSLS), SHIFT(KC_5), SHIFT(KC_LBRC), SHIFT(KC_RBRC),        \
-                SHIFT(KC_6),                                                \
-/* RH */KC_MINUS, KC_4, KC_5, KC_6, SHIFT(KC_EQUAL),                        \
-/* LH */KC_GRAVE, SHIFT(KC_GRAVE), KC_LBRC, KC_RBRC, SHIFT(KC_7),           \
-/* RH */KC_COMMA, KC_1, KC_2, KC_3, KC_BSLS,                                \
-/* LH */KC_FN0, KC_FN4, KC_LALT, KC_LSFT, KC_BSPC, KC_RCTL,                 \
-/* RH */KC_LGUI, KC_SPC, KC_TRNS, KC_0, KC_DOT, KC_EQUAL                    )
-
 // Function-Layer Layout - Take 2 (Punctuation and Symbols, Numpad, Arrows)
-// K2L1
 // http://www.keyboard-layout-editor.com/#/gists/5b3c6a88994b20673fe8b1e95c07a87a
 #define LAYER_NUM_FKEY KEYMAP(                              \
 /* LH */KC_F10, KC_F7, KC_F8, KC_F9, KC_HOME,               \
@@ -88,23 +72,8 @@ KeyRelease event, serial 41, synthetic NO, window 0x7200001,
 /* LH */KC_GRV, KC_FN3, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, \
 /* RH */KC_TRNS, KC_TRNS, KC_TRNS, KC_BSLS, KC_EQL, KC_TRNS )
 
-// "Layer 2" - Persistent/Locking Layout - Arrow Keys, Special/Fn
-// K1L2
-// http://www.keyboard-layout-editor.com/#/gists/7fb4916e338828e4f12ca2f9f4e87262
-#define LAYER_ARROW_FN KEYMAP(                              \
-/* LH */KC_F10, KC_F7, KC_F8, KC_F9, KC_HOME,               \
-/* RH */KC_END, KC_UNDO, KC_UP, KC_FN26, KC_CALC,           \
-/* LH */KC_F11, KC_F4, KC_F5, KC_F6, KC_INS,                \
-/* RH */KC_PGUP, KC_LEFT, KC_DOWN, KC_RIGHT, KC_MYCM,       \
-/* LH */KC_F12, KC_F1, KC_F2, KC_F3, KC_DELETE,             \
-/* RH */KC_PGDN, KC_CUT, KC_COPY, KC_PASTE, KC_MAIL,        \
-/* LH */KC_NO, KC_NO, KC_LALT, KC_LSFT, KC_BSPC, KC_RCTL,   \
-/* RH */KC_LGUI, KC_SPC, KC_FN2, KC_NO, KC_NO, KC_PSCR      ) // two available special keys
-
 // "Layer 3" - Persistent/Locking Layout - Mouse Keys, Media/WWW Keys
-// K1L3, K2L2
 // http://www.keyboard-layout-editor.com/#/gists/0df144f05f028850b3cc37c750543e0f
-// missing RH row 3 is mouse accel togl
 #define LAYER_ARROW_MEDIA KEYMAP(                           \
 /* LH */KC__VOLUP, KC_FN22, KC_MSEL, KC_FN23, KC_WHOM,      \
 /* RH */KC_WSCH, KC_UNDO, KC_UP, KC_FN26, KC_MYCM,          \
@@ -113,7 +82,7 @@ KeyRelease event, serial 41, synthetic NO, window 0x7200001,
 /* LH */KC__MUTE, KC_FN24, KC_MSTP, KC_FN25, KC_WSTP,       \
 /* RH */KC_WREF, KC_CUT, KC_COPY, KC_PASTE, KC_MAIL,        \
 /* LH */KC_FN5, KC_NO, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  \
-/* RH */KC_TRNS, KC_TRNS, KC_FN4, KC_APP, KC_FN0, KC_PSCR   )
+/* RH */KC_TRNS, KC_TRNS, KC_FN4, KC_APP, KC_FN0, KC_TRNS   )
 
 // "Layer 3" - Take 2 - Mouse-Keys (doesn't work!)
 // K2L3
@@ -174,7 +143,6 @@ const action_t PROGMEM fn_actions[] = {
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
     static int8_t mouse_accel_lvl = 0;
-    static int8_t tgl_tst_val = 0;
 
     switch ( id )
     {
