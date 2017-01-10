@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID       0x1209
 #define PRODUCT_ID      0xA1E5
 #define DEVICE_VER      36
-#define MANUFACTURER    pajamapants3000
+#define MANUFACTURER    technomancy
 #define PRODUCT         Atreus
 #define DESCRIPTION     Atreus mechanical travel keyboard
 
@@ -35,7 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define MATRIX_HAS_GHOST
 
 /* Set 0 if debouncing isn't needed */
-#define DEBOUNCE    0
+#define DEBOUNCE    5
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 // #define LOCKING_SUPPORT_ENABLE
@@ -56,12 +56,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* disable debug print */
 #ifndef NO_DEBUG
-#define NO_DEBUG
+//#define NO_DEBUG
 #endif
 
 /* disable print */
 #ifndef NO_DEBUG
-#define NO_PRINT
+//#define NO_PRINT
 #endif
 
 /* disable action features */
