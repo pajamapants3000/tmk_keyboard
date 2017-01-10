@@ -55,10 +55,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /* disable debug print */
+// May be defined already, in common.mk
+#ifndef NO_DEBUG
 #define NO_DEBUG
+#endif
 
 /* disable print */
+// May be defined already, in common.mk
+#ifndef NO_PRINT
 #define NO_PRINT
+#endif
 
 /* disable action features */
 //#define NO_ACTION_LAYER

@@ -38,6 +38,10 @@
 # To rebuild project do "make clean" then "make all".
 #----------------------------------------------------------------------------
 
+# Set to /dev/cu.usbmodem1421 or whatever on Macs
+#USB ?= /dev/ttyACM0
+USB ?= COM4
+
 # Target file name (without extension).
 TARGET ?= atreus
 
@@ -54,6 +58,10 @@ SRC ?=	matrix.c \
 	keymap_common.c
 
 CONFIG_H ?= config.h
+
+# Set suffix for desired keymap
+#KEYMAP ?= qwerty
+KEYMAP ?= tommy
 
 # MCU name
 MCU ?= atmega32u4
@@ -147,9 +155,17 @@ endif
 VPATH += $(TARGET_DIR)
 VPATH += $(TMK_DIR)
 
-include $(TMK_DIR)/protocol/lufa.mk
-include $(TMK_DIR)/common.mk
-include $(TMK_DIR)/rules.mk
+# TODO: this is dumb and redundant
+ifdef TEENSY
+	OPT_DEFS += -DTEENSY -DBOOTLOADER_SIZE=512
+endif
+
+build: $(TARGET).hex
+
+upload: build
+	if [ -f $(USB) ] && [ ! -r $(USB) ]; then echo "Warning: no read permission!"; fi; \
+	while [ ! -r $(USB) ]; do sleep 1; done; \
+	avrdude -p $(MCU) -c avr109 -U flash:w:$(TARGET).hex -P $(USB)
 
 debug-on: EXTRAFLAGS += -DDEBUG -DDEBUG_ACTION
 debug-on: all
@@ -160,4 +176,8 @@ debug-off: all
 
 udev:
 	cp a-star.rules /etc/udev/rules.d/
+
+include $(TMK_DIR)/protocol/lufa.mk
+include $(TMK_DIR)/common.mk
+include $(TMK_DIR)/rules.mk
 
