@@ -23,11 +23,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "keycode.h"
 #include "action.h"
 #include "action_macro.h"
+#include "action_util.h"
 #include "report.h"
 #include "host.h"
 #include "print.h"
 #include "debug.h"
 #include "keymap.h"
+#include "bootloader.h"
 
 #define SHIFT(key) ACTION(ACT_MODS, (MOD_LSFT << 8) | (key))
 #define CTRL(key) ACTION(ACT_MODS, (MOD_LCTL << 8) | (key))
