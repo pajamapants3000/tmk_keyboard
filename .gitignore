@@ -8,3 +8,16 @@
 *.map
 *.sym
 tags
+
+*~
+build/
+*.bak
+.DS_Store
+!converter/*/binary/*.hex
+!keyboard/*/binary/*.hex
+
+# My additions
+.ycm_extra_conf.py
+.ycm_extra_conf.pyc
+.local.vimrc
+
