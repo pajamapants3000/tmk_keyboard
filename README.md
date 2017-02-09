@@ -7,9 +7,23 @@ This is the [Atreus](https://atreus.technomancy.us) fork of the
 In particular, take a look at the `keyboard/atreus` directory and its
 [readme](https://github.com/technomancy/tmk_keyboard/blob/atreus/keyboard/atreus/README.md).
 
+Updates
+-------
+#### 2017/01/11
+Changed action code for `ACTION_LAYER_MODS` and this may cause incompatibility with existent shared URL and downloaded firmwware of keymap editor. If you are using the action you just have to redefine it on keymap editor. Existent keymap code should not suffer.
+
+#### 2016/06/26
+Keymap framework was updated. `fn_actions[]` should be defined as `action_t` instead of `uint16_t`. And default code for keymap handling is now included in core you just need define `uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS]` and `action_t fn_actions[]`.
+
+
+#### 2016/06/22
+Some projects were moved from `converter` and `keyboard` to `orphan` directory. Those might be removed in some future but you will be able to access them with `orphans` tag. See <https://github.com/tmk/tmk_keyboard/issues/173>
+
+#### 2016/02/10
+core: flabbergast's Chibios protocol was merged from <https://github.com/flabbergast/tmk_keyboard/tree/chibios> (@72b1668). See [tmk_core/protocol/chibios/README.md](tmk_core/protocol/chibios/README.md). Chibios protocol supports Cortex-M such as STM32 and Kinetis.
+
 Quick Start
 -----------
-
 Install `gcc-avr` and `avrdude`.
 
     $ cd keyboard/atreus
